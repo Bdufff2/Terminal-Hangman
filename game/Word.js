@@ -1,4 +1,4 @@
-var Letter = require('Letter.js');
+var Letter = require('./Letter.js');
 
 // create function for words to display the words
 function Word(wrd) {
@@ -19,13 +19,31 @@ function Word(wrd) {
         if (this.letters.every(function (ltr) {
             return ltr.show === true;
         })) {
-            this.wordFound = true;
+            this.correctWord = true;
             return true;
         }
-
     };
 
+    this.seeIfLetterFound = function (letterGuessed) {
+        var returnThis = 0;
+        this.letters.forEach(function (ltr) {
+            if (ltr.letter === letterGuessed) {
+                ltr.show = true;
+                returnThis++
+            }
+        })
+        return returnThis;
+    };
 
+    this.renderWord = function(){
+        var display = '';
+        a.letters.forEach(function(ltr){
+            var currentLetter = ltr.renderLetter();
+            display += currentLetter;
+        });
+
+        return display;
+    };
 }
 
 module.exports = Word;
